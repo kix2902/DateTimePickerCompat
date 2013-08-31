@@ -329,7 +329,7 @@ public class TimePickerDialog extends DialogFragment implements OnValueSelectedL
 	public void onValueSelected(int pickerIndex, int newValue, boolean autoAdvance) {
 		if (pickerIndex == HOUR_INDEX) {
 			setHour(newValue, false);
-			String announcement = String.format("%d", newValue);
+			String announcement = String.format(Locale.getDefault(), "%d", newValue);
 			if (mAllowAutoAdvance && autoAdvance) {
 				setCurrentItemShowing(MINUTE_INDEX, true, true, false);
 				announcement += ". " + mSelectMinutes;
@@ -455,7 +455,8 @@ public class TimePickerDialog extends DialogFragment implements OnValueSelectedL
 					} else if (deleted == getAmOrPmKeyCode(PM)) {
 						deletedKeyStr = mPmText;
 					} else {
-						deletedKeyStr = String.format("%d", getValFromKeyCode(deleted));
+						deletedKeyStr = String.format(Locale.getDefault(), "%d",
+								getValFromKeyCode(deleted));
 					}
 					Utils.tryAccessibilityAnnounce(mTimePicker,
 							String.format(mDeletedKeyFormat, deletedKeyStr));
