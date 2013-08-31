@@ -22,6 +22,7 @@ import java.util.Locale;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -144,8 +145,11 @@ public class DayPickerView extends ListView implements OnScrollListener, OnDateC
 		setVerticalScrollBarEnabled(false);
 		setOnScrollListener(this);
 		setFadingEdgeLength(0);
-		// Make the scrolling behavior nicer
-		setFriction(ViewConfiguration.getScrollFriction() * mFriction);
+
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+			// Make the scrolling behavior nicer
+			setFriction(ViewConfiguration.getScrollFriction() * mFriction);
+		}
 	}
 
 	/**
