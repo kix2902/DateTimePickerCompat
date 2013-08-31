@@ -16,6 +16,7 @@
 
 package com.android.datetimepicker.date;
 
+import java.text.DateFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
@@ -133,6 +134,7 @@ public class DayPickerView extends ListView implements OnScrollListener, OnDateC
 	 * Sets all the required fields for the list view. Override this method to
 	 * set a different list view behavior.
 	 */
+	@SuppressLint("NewApi")
 	protected void setUpListView() {
 		// Transparent background on scroll
 		setCacheColorHint(0);
@@ -171,6 +173,7 @@ public class DayPickerView extends ListView implements OnScrollListener, OnDateC
 	 *            visible
 	 * @return Whether or not the view animated to the new location
 	 */
+	@SuppressLint("NewApi")
 	public boolean goTo(CalendarDay day, boolean animate, boolean setSelected, boolean forceScroll) {
 
 		// Set the selected day
@@ -218,8 +221,11 @@ public class DayPickerView extends ListView implements OnScrollListener, OnDateC
 			setMonthDisplayed(mTempDay);
 			mPreviousScrollState = OnScrollListener.SCROLL_STATE_FLING;
 			if (animate) {
-				smoothScrollToPositionFromTop(
-						position, LIST_TOP_OFFSET, GOTO_SCROLL_DURATION);
+				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+					smoothScrollToPositionFromTop(position, LIST_TOP_OFFSET, GOTO_SCROLL_DURATION);
+				} else {
+					postSetSelection(position);
+				}
 				return true;
 			} else {
 				postSetSelection(position);
@@ -296,6 +302,7 @@ public class DayPickerView extends ListView implements OnScrollListener, OnDateC
 			mHandler.postDelayed(this, SCROLL_CHANGE_DELAY);
 		}
 
+		@SuppressLint("NewApi")
 		@Override
 		public void run() {
 			mCurrentScrollState = mNewState;
@@ -324,10 +331,18 @@ public class DayPickerView extends ListView implements OnScrollListener, OnDateC
 				final int bottom = child.getBottom();
 				final int midpoint = getHeight() / 2;
 				if (scroll && top < LIST_TOP_OFFSET) {
-					if (bottom > midpoint) {
-						smoothScrollBy(top, GOTO_SCROLL_DURATION);
+					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.FROYO) {
+						if (bottom > midpoint) {
+							smoothScrollBy(top, GOTO_SCROLL_DURATION);
+						} else {
+							smoothScrollBy(bottom, GOTO_SCROLL_DURATION);
+						}
 					} else {
-						smoothScrollBy(bottom, GOTO_SCROLL_DURATION);
+						if (bottom > midpoint) {
+							scrollBy(top, GOTO_SCROLL_DURATION);
+						} else {
+							scrollBy(bottom, GOTO_SCROLL_DURATION);
+						}
 					}
 				}
 			} else {
@@ -439,7 +454,8 @@ public class DayPickerView extends ListView implements OnScrollListener, OnDateC
 		cal.set(day.year, day.month, day.day);
 
 		StringBuffer sbuf = new StringBuffer();
-		sbuf.append(cal.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault()));
+		sbuf.append(new DateFormatSymbols(Locale.getDefault()).getWeekdays()[cal
+				.get(Calendar.MONTH)]);
 		sbuf.append(" ");
 		sbuf.append(YEAR_FORMAT.format(cal.getTime()));
 		return sbuf.toString();
