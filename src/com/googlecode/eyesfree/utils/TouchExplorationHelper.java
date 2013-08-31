@@ -24,19 +24,20 @@ import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.v4.view.AccessibilityDelegateCompat;
 import android.support.v4.view.ViewCompat;
+import android.support.v4.view.ViewParentCompat;
 import android.support.v4.view.accessibility.AccessibilityEventCompat;
 import android.support.v4.view.accessibility.AccessibilityNodeInfoCompat;
 import android.support.v4.view.accessibility.AccessibilityNodeProviderCompat;
 import android.support.v4.view.accessibility.AccessibilityRecordCompat;
 import android.text.TextUtils;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityManager;
 
-public abstract class TouchExplorationHelper<T> extends AccessibilityNodeProviderCompat
-		implements View.OnHoverListener {
+import com.nineoldandroids.view.ViewHelper;
+
+public abstract class TouchExplorationHelper<T> extends AccessibilityNodeProviderCompat {
 	/** Virtual node identifier value for invalid nodes. */
 	public static final int INVALID_ID = Integer.MIN_VALUE;
 
@@ -49,7 +50,7 @@ public abstract class TouchExplorationHelper<T> extends AccessibilityNodeProvide
 
 	private final View mParentView;
 	private int mFocusedItemId = INVALID_ID;
-	private T mCurrentItem = null;
+	private final T mCurrentItem = null;
 
 	/**
 	 * Constructs a new touch exploration helper.
@@ -137,8 +138,7 @@ public abstract class TouchExplorationHelper<T> extends AccessibilityNodeProvide
 
 		final AccessibilityEvent event = getEventForItem(item, eventType);
 		final ViewGroup group = (ViewGroup) mParentView.getParent();
-
-		return group.requestSendAccessibilityEvent(mParentView, event);
+		return ViewParentCompat.requestSendAccessibilityEvent(group, mParentView, event);
 	}
 
 	@Override
@@ -190,42 +190,6 @@ public abstract class TouchExplorationHelper<T> extends AccessibilityNodeProvide
 		handled |= performActionForItem(item, action, arguments);
 
 		return handled;
-	}
-
-	@Override
-	public boolean onHover(View view, MotionEvent event) {
-		if (!mManager.isTouchExplorationEnabled()) {
-			return false;
-		}
-
-		switch (event.getAction()) {
-			case MotionEvent.ACTION_HOVER_ENTER:
-			case MotionEvent.ACTION_HOVER_MOVE:
-				final T item = getItemAt(event.getX(), event.getY());
-				setCurrentItem(item);
-				return true;
-			case MotionEvent.ACTION_HOVER_EXIT:
-				setCurrentItem(null);
-				return true;
-		}
-
-		return false;
-	}
-
-	private void setCurrentItem(T item) {
-		if (mCurrentItem == item) {
-			return;
-		}
-
-		if (mCurrentItem != null) {
-			sendEventForItem(mCurrentItem, AccessibilityEvent.TYPE_VIEW_HOVER_EXIT);
-		}
-
-		mCurrentItem = item;
-
-		if (mCurrentItem != null) {
-			sendEventForItem(mCurrentItem, AccessibilityEventCompat.TYPE_VIEW_HOVER_ENTER);
-		}
 	}
 
 	private AccessibilityEvent getEventForItem(T item, int eventType) {
@@ -343,7 +307,7 @@ public abstract class TouchExplorationHelper<T> extends AccessibilityNodeProvide
 			final View view = (View) current;
 			// We have attach info so this view is attached and there is no
 			// need to check whether we reach to ViewRootImpl on the way up.
-			if ((view.getAlpha() <= 0) || (view.getVisibility() != View.VISIBLE)) {
+			if ((ViewHelper.getAlpha(view) <= 0) || (view.getVisibility() != View.VISIBLE)) {
 				return false;
 			}
 			current = view.getParent();
