@@ -410,8 +410,7 @@ public class SimpleMonthView extends View {
 				| DateUtils.FORMAT_NO_MONTH_DAY;
 		mStringBuilder.setLength(0);
 		long millis = mCalendar.getTimeInMillis();
-		return DateUtils.formatDateRange(getContext(), mFormatter, millis, millis, flags,
-				Time.getCurrentTimezone()).toString();
+		return DateUtils.formatDateRange(getContext(), millis, millis, flags);
 	}
 
 	private void drawMonthTitle(Canvas canvas) {
