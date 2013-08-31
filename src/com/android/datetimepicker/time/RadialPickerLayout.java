@@ -24,6 +24,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.os.Vibrator;
+import android.support.v4.view.AccessibilityDelegateCompat;
+import android.support.v4.view.ViewCompat;
 import android.support.v4.view.accessibility.AccessibilityManagerCompat;
 import android.support.v4.view.accessibility.AccessibilityNodeInfoCompat;
 import android.text.format.DateUtils;
@@ -142,6 +144,8 @@ public class RadialPickerLayout extends FrameLayout implements OnTouchListener {
 				.getSystemService(Context.ACCESSIBILITY_SERVICE);
 
 		mTimeInitialized = false;
+
+		installAccessibilityDelegate();
 	}
 
 	/**
@@ -768,38 +772,48 @@ public class RadialPickerLayout extends FrameLayout implements OnTouchListener {
 		return true;
 	}
 
-	/**
-	 * Necessary for accessibility, to ensure we support "scrolling" forward and backward
-	 * in the circle.
-	 */
-	@Override
-	public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo info) {
-		super.onInitializeAccessibilityNodeInfo(info);
-		info.addAction(AccessibilityNodeInfoCompat.ACTION_SCROLL_FORWARD);
-		info.addAction(AccessibilityNodeInfoCompat.ACTION_SCROLL_BACKWARD);
-	}
+	private void installAccessibilityDelegate() {
+		// The accessibility delegate enables customizing accessibility behavior
+		// via composition as opposed as inheritance. The main benefit is that
+		// one can write a backwards compatible application by setting the delegate
+		// only if the API level is high enough i.e. the delegate is part of the APIs.
+		// The easiest way to achieve that is by using the support library which
+		// takes the burden of checking API version and knowing which API version
+		// introduced the delegate off the developer.
+		ViewCompat.setAccessibilityDelegate(this, new AccessibilityDelegateCompat() {
 
-	/**
-	 * Announce the currently-selected time when launched.
-	 */
-	@Override
-	public boolean dispatchPopulateAccessibilityEvent(AccessibilityEvent event) {
-		if (event.getEventType() == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED) {
-			// Clear the event's current text so that only the current time will be spoken.
-			event.getText().clear();
-			Time time = new Time();
-			time.hour = getHours();
-			time.minute = getMinutes();
-			long millis = time.normalize(true);
-			int flags = DateUtils.FORMAT_SHOW_TIME;
-			if (mIs24HourMode) {
-				flags |= DateUtils.FORMAT_24HOUR;
+			@Override
+			public void onInitializeAccessibilityNodeInfo(View host,
+					AccessibilityNodeInfoCompat info) {
+				super.onInitializeAccessibilityNodeInfo(host, info);
+				// Note that View.onInitializeAccessibilityNodeInfo was introduced in
+				// ICS and we would like to tweak a bit the text that is reported to
+				// accessibility services via the AccessibilityNodeInfo.
+				info.addAction(AccessibilityNodeInfoCompat.ACTION_SCROLL_FORWARD);
+				info.addAction(AccessibilityNodeInfoCompat.ACTION_SCROLL_BACKWARD);
 			}
-			String timeString = DateUtils.formatDateTime(getContext(), millis, flags);
-			event.getText().add(timeString);
-			return true;
-		}
-		return super.dispatchPopulateAccessibilityEvent(event);
+
+			@Override
+			public boolean dispatchPopulateAccessibilityEvent(View host, AccessibilityEvent event) {
+				if (event.getEventType() == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED) {
+					// Clear the event's current text so that only the current time will be spoken.
+					event.getText().clear();
+					Time time = new Time();
+					time.hour = getHours();
+					time.minute = getMinutes();
+					long millis = time.normalize(true);
+					int flags = DateUtils.FORMAT_SHOW_TIME;
+					if (mIs24HourMode) {
+						flags |= DateUtils.FORMAT_24HOUR;
+					}
+					String timeString = DateUtils.formatDateTime(getContext(), millis, flags);
+					event.getText().add(timeString);
+					return true;
+				}
+
+				return super.dispatchPopulateAccessibilityEvent(host, event);
+			}
+		});
 	}
 
 	/**
