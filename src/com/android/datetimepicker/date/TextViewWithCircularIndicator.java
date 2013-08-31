@@ -27,7 +27,7 @@ import android.util.AttributeSet;
 import android.view.accessibility.AccessibilityEvent;
 import android.widget.TextView;
 
-import com.android.datetimepicker.R;
+import com.redinput.datetimepickercompat.R;
 
 /**
  * A text view which, when pressed or activated, displays a blue circle around the text.

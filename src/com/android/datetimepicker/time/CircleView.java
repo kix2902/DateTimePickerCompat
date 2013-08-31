@@ -23,7 +23,7 @@ import android.graphics.Paint;
 import android.util.Log;
 import android.view.View;
 
-import com.android.datetimepicker.R;
+import com.redinput.datetimepickercompat.R;
 
 /**
  * Draws a simple white circle on which the numbers will be drawn.

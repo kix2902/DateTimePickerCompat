@@ -43,7 +43,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.ViewAnimator;
 
-import com.android.datetimepicker.R;
+import com.redinput.datetimepickercompat.R;
 import com.android.datetimepicker.Utils;
 import com.android.datetimepicker.date.SimpleMonthAdapter.CalendarDay;
 

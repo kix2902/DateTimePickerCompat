@@ -40,7 +40,7 @@ import android.view.accessibility.AccessibilityManager;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
 
-import com.android.datetimepicker.R;
+import com.redinput.datetimepickercompat.R;
 
 import java.util.HashMap;
 

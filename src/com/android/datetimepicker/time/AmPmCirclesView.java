@@ -25,7 +25,7 @@ import android.graphics.Paint.Align;
 import android.util.Log;
 import android.view.View;
 
-import com.android.datetimepicker.R;
+import com.redinput.datetimepickercompat.R;
 
 import java.text.DateFormatSymbols;
 

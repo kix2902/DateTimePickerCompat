@@ -25,7 +25,7 @@ import android.widget.AbsListView.LayoutParams;
 import android.widget.BaseAdapter;
 
 import com.android.datetimepicker.date.SimpleMonthView.OnDayClickListener;
-import com.android.datetimepicker.R;
+import com.redinput.datetimepickercompat.R;
 
 import java.util.Calendar;
 import java.util.HashMap;

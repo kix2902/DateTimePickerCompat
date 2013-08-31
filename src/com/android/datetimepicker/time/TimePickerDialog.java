@@ -34,7 +34,7 @@ import android.view.Window;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.android.datetimepicker.R;
+import com.redinput.datetimepickercompat.R;
 import com.android.datetimepicker.Utils;
 import com.android.datetimepicker.time.RadialPickerLayout.OnValueSelectedListener;
 
