@@ -220,26 +220,8 @@ public class SimpleMonthView extends View {
 		initView();
 	}
 
-	@Override
-	public void setAccessibilityDelegate(AccessibilityDelegate delegate) {
-		// Workaround for a JB MR1 issue where accessibility delegates on
-		// top-level ListView items are overwritten.
-		if (!mLockAccessibilityDelegate) {
-			super.setAccessibilityDelegate(delegate);
-		}
-	}
-
 	public void setOnDayClickListener(OnDayClickListener listener) {
 		mOnDayClickListener = listener;
-	}
-
-	@Override
-	public boolean onHoverEvent(MotionEvent event) {
-		// First right-of-refusal goes the touch exploration helper.
-		if (mNodeProvider.onHover(this, event)) {
-			return true;
-		}
-		return super.onHoverEvent(event);
 	}
 
 	@Override
