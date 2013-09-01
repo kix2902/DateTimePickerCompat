@@ -411,8 +411,8 @@ public class SimpleMonthView extends View {
 			mDayLabelCalendar.set(Calendar.DAY_OF_WEEK, calendarDay);
 			canvas.drawText(
 					new DateFormatSymbols(Locale.getDefault()).getWeekdays()[mDayLabelCalendar
-							.get(Calendar.DAY_OF_WEEK)].toUpperCase(Locale.getDefault()), x, y,
-					mMonthDayLabelPaint);
+							.get(Calendar.DAY_OF_WEEK)].toUpperCase(Locale.getDefault()).substring(
+							0, 3), x, y, mMonthDayLabelPaint);
 		}
 	}
 
