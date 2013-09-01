@@ -181,7 +181,8 @@ public abstract class TouchExplorationHelper<T> extends AccessibilityNodeProvide
 			case AccessibilityNodeInfoCompat.ACTION_CLEAR_ACCESSIBILITY_FOCUS:
 				if (mFocusedItemId == virtualViewId) {
 					mFocusedItemId = INVALID_ID;
-					sendEventForItem(item, AccessibilityEvent.TYPE_VIEW_ACCESSIBILITY_FOCUS_CLEARED);
+					sendEventForItem(item,
+							AccessibilityEventCompat.TYPE_VIEW_ACCESSIBILITY_FOCUS_CLEARED);
 					handled = true;
 				}
 				break;
