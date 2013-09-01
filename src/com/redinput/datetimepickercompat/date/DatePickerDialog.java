@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.datetimepicker.date;
+package com.redinput.datetimepickercompat.date;
 
 import java.text.DateFormatSymbols;
 import java.text.SimpleDateFormat;
@@ -44,10 +44,10 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.android.datetimepicker.Utils;
-import com.android.datetimepicker.date.SimpleMonthAdapter.CalendarDay;
 import com.nineoldandroids.animation.ObjectAnimator;
 import com.redinput.datetimepickercompat.R;
+import com.redinput.datetimepickercompat.Utils;
+import com.redinput.datetimepickercompat.date.SimpleMonthAdapter.CalendarDay;
 
 /**
  * Dialog allowing users to select a date.

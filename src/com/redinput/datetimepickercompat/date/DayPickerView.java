@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.datetimepicker.date;
+package com.redinput.datetimepickercompat.date;
 
 import java.text.DateFormatSymbols;
 import java.text.SimpleDateFormat;
@@ -38,9 +38,9 @@ import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.ListView;
 
-import com.android.datetimepicker.Utils;
-import com.android.datetimepicker.date.DatePickerDialog.OnDateChangedListener;
-import com.android.datetimepicker.date.SimpleMonthAdapter.CalendarDay;
+import com.redinput.datetimepickercompat.Utils;
+import com.redinput.datetimepickercompat.date.DatePickerDialog.OnDateChangedListener;
+import com.redinput.datetimepickercompat.date.SimpleMonthAdapter.CalendarDay;
 
 /**
  * This displays a list of months in a calendar format with selectable days.

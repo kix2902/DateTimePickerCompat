@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.datetimepicker;
+package com.redinput.datetimepickercompat;
 
 import android.content.Context;
 import android.support.v4.view.AccessibilityDelegateCompat;

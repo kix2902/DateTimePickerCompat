@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-package com.android.datetimepicker.date;
+package com.redinput.datetimepickercompat.date;
 
-import com.android.datetimepicker.date.DatePickerDialog.OnDateChangedListener;
-import com.android.datetimepicker.date.SimpleMonthAdapter.CalendarDay;
+import com.redinput.datetimepickercompat.date.DatePickerDialog.OnDateChangedListener;
+import com.redinput.datetimepickercompat.date.SimpleMonthAdapter.CalendarDay;
 
 /**
  * Controller class to communicate among the various components of the date picker dialog.

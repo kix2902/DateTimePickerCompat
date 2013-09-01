@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.datetimepicker.date;
+package com.redinput.datetimepickercompat.date;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -24,8 +24,8 @@ import android.view.ViewGroup;
 import android.widget.AbsListView.LayoutParams;
 import android.widget.BaseAdapter;
 
-import com.android.datetimepicker.date.SimpleMonthView.OnDayClickListener;
 import com.redinput.datetimepickercompat.R;
+import com.redinput.datetimepickercompat.date.SimpleMonthView.OnDayClickListener;
 
 import java.util.Calendar;
 import java.util.HashMap;

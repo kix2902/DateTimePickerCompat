@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.datetimepicker.time;
+package com.redinput.datetimepickercompat.time;
 
 import android.annotation.SuppressLint;
 import android.app.Service;

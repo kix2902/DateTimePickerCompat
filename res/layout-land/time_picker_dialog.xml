@@ -65,7 +65,7 @@
         </LinearLayout>
     </LinearLayout>
 
-    <com.android.datetimepicker.time.RadialPickerLayout
+    <com.redinput.datetimepickercompat.time.RadialPickerLayout
         android:id="@+id/time_picker"
         android:layout_width="@dimen/picker_dimen"
         android:layout_height="match_parent"

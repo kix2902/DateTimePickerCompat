@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.datetimepicker.date;
+package com.redinput.datetimepickercompat.date;
 
 import java.security.InvalidParameterException;
 import java.text.DateFormatSymbols;
@@ -44,10 +44,10 @@ import android.view.View;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 
-import com.android.datetimepicker.Utils;
-import com.android.datetimepicker.date.SimpleMonthAdapter.CalendarDay;
 import com.googlecode.eyesfree.utils.TouchExplorationHelper;
 import com.redinput.datetimepickercompat.R;
+import com.redinput.datetimepickercompat.Utils;
+import com.redinput.datetimepickercompat.date.SimpleMonthAdapter.CalendarDay;
 
 /**
  * A calendar-like view displaying a specified month and the appropriate selectable day numbers

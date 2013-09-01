@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.datetimepicker.date;
+package com.redinput.datetimepickercompat.date;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,8 +34,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.android.datetimepicker.date.DatePickerDialog.OnDateChangedListener;
 import com.redinput.datetimepickercompat.R;
+import com.redinput.datetimepickercompat.date.DatePickerDialog.OnDateChangedListener;
 
 /**
  * Displays a selectable list of years.

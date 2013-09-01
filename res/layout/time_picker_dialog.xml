@@ -34,7 +34,7 @@
             layout="@layout/time_header_label" />
     </FrameLayout>
 
-    <com.android.datetimepicker.time.RadialPickerLayout
+    <com.redinput.datetimepickercompat.time.RadialPickerLayout
         android:id="@+id/time_picker"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/picker_dimen"

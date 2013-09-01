@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.datetimepicker;
+package com.redinput.datetimepickercompat;
 
 import java.util.Calendar;
 

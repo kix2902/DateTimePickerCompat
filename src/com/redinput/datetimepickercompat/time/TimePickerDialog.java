@@ -14,7 +14,7 @@
  * limitations under the License
  */
 
-package com.android.datetimepicker.time;
+package com.redinput.datetimepickercompat.time;
 
 import java.text.DateFormatSymbols;
 import java.util.ArrayList;
@@ -37,10 +37,10 @@ import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
 import android.widget.TextView;
 
-import com.android.datetimepicker.Utils;
-import com.android.datetimepicker.time.RadialPickerLayout.OnValueSelectedListener;
 import com.nineoldandroids.animation.ObjectAnimator;
 import com.redinput.datetimepickercompat.R;
+import com.redinput.datetimepickercompat.Utils;
+import com.redinput.datetimepickercompat.time.RadialPickerLayout.OnValueSelectedListener;
 
 /**
  * Dialog to set a time.
