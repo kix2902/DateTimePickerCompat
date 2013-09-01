@@ -296,15 +296,15 @@ public class TimePickerDialog extends DialogFragment implements OnValueSelectedL
 
 	private void updateAmPmDisplay(int amOrPm) {
 		if (amOrPm == AM) {
-			mAmPmTextView.setText(mAmText);
+			mAmPmTextView.setText(mAmText.toUpperCase(Locale.getDefault()));
 			Utils.tryAccessibilityAnnounce(mTimePicker, mAmText);
 			mAmPmHitspace.setContentDescription(mAmText);
 		} else if (amOrPm == PM) {
-			mAmPmTextView.setText(mPmText);
+			mAmPmTextView.setText(mPmText.toUpperCase(Locale.getDefault()));
 			Utils.tryAccessibilityAnnounce(mTimePicker, mPmText);
 			mAmPmHitspace.setContentDescription(mPmText);
 		} else {
-			mAmPmTextView.setText(mDoublePlaceholderText);
+			mAmPmTextView.setText(mDoublePlaceholderText.toUpperCase(Locale.getDefault()));
 		}
 	}
 
@@ -924,9 +924,6 @@ public class TimePickerDialog extends DialogFragment implements OnValueSelectedL
 	private class KeyboardListener implements OnKeyListener {
 		@Override
 		public boolean onKey(View v, int keyCode, KeyEvent event) {
-			TextView txt = (TextView) v;
-			txt.setText(txt.getText().toString().toUpperCase(Locale.getDefault()));
-
 			if (event.getAction() == KeyEvent.ACTION_UP) {
 				return processKeyUp(keyCode);
 			}
