@@ -30,6 +30,7 @@ import com.nineoldandroids.animation.ObjectAnimator;
 import com.nineoldandroids.animation.PropertyValuesHolder;
 import com.nineoldandroids.animation.ValueAnimator;
 import com.nineoldandroids.animation.ValueAnimator.AnimatorUpdateListener;
+import com.nineoldandroids.view.animation.AnimatorProxy;
 import com.redinput.datetimepickercompat.R;
 
 /**
@@ -292,7 +293,9 @@ public class RadialTextsView extends View {
 		PropertyValuesHolder fadeOut = PropertyValuesHolder.ofKeyframe("alpha", kf0, kf1);
 
 		mDisappearAnimator = ObjectAnimator.ofPropertyValuesHolder(
-				this, radiusDisappear, fadeOut).setDuration(duration);
+				AnimatorProxy.NEEDS_PROXY ?
+						AnimatorProxy.wrap(this) : this, radiusDisappear, fadeOut).setDuration(
+				duration);
 		mDisappearAnimator.addUpdateListener(mInvalidateUpdateListener);
 
 		// Set up animator for reappearing.
@@ -316,7 +319,9 @@ public class RadialTextsView extends View {
 		PropertyValuesHolder fadeIn = PropertyValuesHolder.ofKeyframe("alpha", kf0, kf1, kf2);
 
 		mReappearAnimator = ObjectAnimator.ofPropertyValuesHolder(
-				this, radiusReappear, fadeIn).setDuration(totalDuration);
+				AnimatorProxy.NEEDS_PROXY ?
+						AnimatorProxy.wrap(this) : this, radiusReappear, fadeIn).setDuration(
+				totalDuration);
 		mReappearAnimator.addUpdateListener(mInvalidateUpdateListener);
 	}
 

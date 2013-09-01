@@ -27,6 +27,7 @@ import android.view.accessibility.AccessibilityEvent;
 import com.nineoldandroids.animation.Keyframe;
 import com.nineoldandroids.animation.ObjectAnimator;
 import com.nineoldandroids.animation.PropertyValuesHolder;
+import com.nineoldandroids.view.animation.AnimatorProxy;
 
 /**
  * Utility helper functions for time and date pickers.
@@ -134,7 +135,8 @@ public class Utils {
 		PropertyValuesHolder scaleX = PropertyValuesHolder.ofKeyframe("scaleX", k0, k1, k2, k3);
 		PropertyValuesHolder scaleY = PropertyValuesHolder.ofKeyframe("scaleY", k0, k1, k2, k3);
 		ObjectAnimator pulseAnimator =
-				ObjectAnimator.ofPropertyValuesHolder(labelToAnimate, scaleX, scaleY);
+				ObjectAnimator.ofPropertyValuesHolder(AnimatorProxy.NEEDS_PROXY ?
+						AnimatorProxy.wrap(labelToAnimate) : labelToAnimate, scaleX, scaleY);
 		pulseAnimator.setDuration(PULSE_ANIMATOR_DURATION);
 
 		return pulseAnimator;
