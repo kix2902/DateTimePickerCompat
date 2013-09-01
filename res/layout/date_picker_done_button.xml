@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2013 The Android Open Source Project
+<!--
+     Copyright (C) 2013 The Android Open Source Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -14,18 +15,17 @@
      limitations under the License.
 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    style="?android:attr/buttonBarStyle"
     android:layout_width="@dimen/date_picker_component_width"
     android:layout_height="wrap_content"
     android:orientation="vertical" >
 
     <Button
         android:id="@+id/done"
-        style="?android:attr/buttonBarButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="48dp"
         android:text="@string/done_label"
-        android:textSize="@dimen/done_label_size"
-        android:textColor="@color/done_text_color" />
+        android:textColor="@color/done_text_color"
+        android:textSize="@dimen/done_label_size" />
+
 </LinearLayout>
