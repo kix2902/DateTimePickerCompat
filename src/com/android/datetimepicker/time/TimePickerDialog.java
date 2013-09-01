@@ -20,7 +20,6 @@ import java.text.DateFormatSymbols;
 import java.util.ArrayList;
 import java.util.Locale;
 
-import android.app.ActionBar.LayoutParams;
 import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -35,6 +34,7 @@ import android.view.View.OnKeyListener;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.RelativeLayout;
+import android.widget.RelativeLayout.LayoutParams;
 import android.widget.TextView;
 
 import com.android.datetimepicker.Utils;
@@ -924,6 +924,9 @@ public class TimePickerDialog extends DialogFragment implements OnValueSelectedL
 	private class KeyboardListener implements OnKeyListener {
 		@Override
 		public boolean onKey(View v, int keyCode, KeyEvent event) {
+			TextView txt = (TextView) v;
+			txt.setText(txt.getText().toString().toUpperCase(Locale.getDefault()));
+
 			if (event.getAction() == KeyEvent.ACTION_UP) {
 				return processKeyUp(keyCode);
 			}
