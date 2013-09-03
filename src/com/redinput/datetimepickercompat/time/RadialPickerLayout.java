@@ -16,7 +16,6 @@
 
 package com.redinput.datetimepickercompat.time;
 
-import android.annotation.SuppressLint;
 import android.app.Service;
 import android.content.Context;
 import android.content.res.Resources;
@@ -39,7 +38,6 @@ import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityManager;
-import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
 
 import com.nineoldandroids.animation.AnimatorSet;
@@ -813,64 +811,61 @@ public class RadialPickerLayout extends FrameLayout implements OnTouchListener {
 
 				return super.dispatchPopulateAccessibilityEvent(host, event);
 			}
-		});
-	}
 
-	/**
-	 * When scroll forward/backward events are received, jump the time to the higher/lower
-	 * discrete, visible value on the circle.
-	 */
-	@SuppressLint("NewApi")
-	@Override
-	public boolean performAccessibilityAction(int action, Bundle arguments) {
-		if (super.performAccessibilityAction(action, arguments)) {
-			return true;
-		}
-
-		int changeMultiplier = 0;
-		if (action == AccessibilityNodeInfo.ACTION_SCROLL_FORWARD) {
-			changeMultiplier = 1;
-		} else if (action == AccessibilityNodeInfo.ACTION_SCROLL_BACKWARD) {
-			changeMultiplier = -1;
-		}
-		if (changeMultiplier != 0) {
-			int value = getCurrentlyShowingValue();
-			int stepSize = 0;
-			int currentItemShowing = getCurrentItemShowing();
-			if (currentItemShowing == HOUR_INDEX) {
-				stepSize = HOUR_VALUE_TO_DEGREES_STEP_SIZE;
-				value %= 12;
-			} else if (currentItemShowing == MINUTE_INDEX) {
-				stepSize = MINUTE_VALUE_TO_DEGREES_STEP_SIZE;
-			}
-
-			int degrees = value * stepSize;
-			degrees = snapOnly30s(degrees, changeMultiplier);
-			value = degrees / stepSize;
-			int maxValue = 0;
-			int minValue = 0;
-			if (currentItemShowing == HOUR_INDEX) {
-				if (mIs24HourMode) {
-					maxValue = 23;
-				} else {
-					maxValue = 12;
-					minValue = 1;
+			@Override
+			public boolean performAccessibilityAction(View host, int action, Bundle args) {
+				if (super.performAccessibilityAction(host, action, args)) {
+					return true;
 				}
-			} else {
-				maxValue = 55;
-			}
-			if (value > maxValue) {
-				// If we scrolled forward past the highest number, wrap around to the lowest.
-				value = minValue;
-			} else if (value < minValue) {
-				// If we scrolled backward past the lowest number, wrap around to the highest.
-				value = maxValue;
-			}
-			setItem(currentItemShowing, value);
-			mListener.onValueSelected(currentItemShowing, value, false);
-			return true;
-		}
 
-		return false;
+				int changeMultiplier = 0;
+				if (action == AccessibilityNodeInfoCompat.ACTION_SCROLL_FORWARD) {
+					changeMultiplier = 1;
+				} else if (action == AccessibilityNodeInfoCompat.ACTION_SCROLL_BACKWARD) {
+					changeMultiplier = -1;
+				}
+				if (changeMultiplier != 0) {
+					int value = getCurrentlyShowingValue();
+					int stepSize = 0;
+					int currentItemShowing = getCurrentItemShowing();
+					if (currentItemShowing == HOUR_INDEX) {
+						stepSize = HOUR_VALUE_TO_DEGREES_STEP_SIZE;
+						value %= 12;
+					} else if (currentItemShowing == MINUTE_INDEX) {
+						stepSize = MINUTE_VALUE_TO_DEGREES_STEP_SIZE;
+					}
+
+					int degrees = value * stepSize;
+					degrees = snapOnly30s(degrees, changeMultiplier);
+					value = degrees / stepSize;
+					int maxValue = 0;
+					int minValue = 0;
+					if (currentItemShowing == HOUR_INDEX) {
+						if (mIs24HourMode) {
+							maxValue = 23;
+						} else {
+							maxValue = 12;
+							minValue = 1;
+						}
+					} else {
+						maxValue = 55;
+					}
+					if (value > maxValue) {
+						// If we scrolled forward past the highest number, wrap around to the
+						// lowest.
+						value = minValue;
+					} else if (value < minValue) {
+						// If we scrolled backward past the lowest number, wrap around to the
+						// highest.
+						value = maxValue;
+					}
+					setItem(currentItemShowing, value);
+					mListener.onValueSelected(currentItemShowing, value, false);
+					return true;
+				}
+
+				return false;
+			}
+		});
 	}
 }

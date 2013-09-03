@@ -20,7 +20,6 @@ import java.text.DateFormatSymbols;
 import java.util.ArrayList;
 import java.util.Locale;
 
-import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
@@ -122,11 +121,6 @@ public class TimePickerDialog extends DialogFragment implements OnValueSelectedL
 	}
 
 	public TimePickerDialog() {
-		// Empty constructor required for dialog fragment.
-	}
-
-	public TimePickerDialog(Context context, int theme, OnTimeSetListener callback,
-			int hourOfDay, int minute, boolean is24HourMode) {
 		// Empty constructor required for dialog fragment.
 	}
 

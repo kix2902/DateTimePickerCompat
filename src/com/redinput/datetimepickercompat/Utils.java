@@ -18,7 +18,6 @@ package com.redinput.datetimepickercompat;
 
 import java.util.Calendar;
 
-import android.annotation.SuppressLint;
 import android.os.Build;
 import android.text.format.Time;
 import android.view.View;
@@ -49,7 +48,6 @@ public class Utils {
 	 * @param text
 	 *            Text to announce.
 	 */
-	@SuppressLint("NewApi")
 	public static void tryAccessibilityAnnounce(View view, CharSequence text) {
 		if (isJellybeanOrLater() && view != null && text != null) {
 			view.sendAccessibilityEvent(AccessibilityEvent.TYPE_VIEW_FOCUSED);
