@@ -17,8 +17,7 @@
 */
 -->
 
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" xmlns:android="http://schemas.android.com/apk/res/android">
 
     <dimen name="date_picker_header_height">45dp</dimen>
     <dimen name="time_label_right_padding">16sp</dimen>
