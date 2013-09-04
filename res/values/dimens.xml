@@ -33,7 +33,7 @@
     <dimen name="done_label_size">12sp</dimen>
     <dimen name="ampm_left_padding">5dip</dimen>
     <dimen name="separator_padding">3dip</dimen>
-    <dimen name="header_height">80dip</dimen>
+    <dimen name="header_height">70dip</dimen>
     <dimen name="footer_height">40dip</dimen>
     <dimen name="minimum_margin_sides">48dip</dimen>
     <dimen name="minimum_margin_top_bottom">24dip</dimen>
@@ -41,7 +41,7 @@
     <dimen name="date_picker_component_width">200dp</dimen>
     <dimen name="date_picker_header_height">25dp</dimen>
     <dimen name="selected_calendar_layout_height">135dp</dimen>
-    <dimen name="date_picker_view_animator_height">200dp</dimen>
+    <dimen name="date_picker_view_animator_height">170dp</dimen>
     <dimen name="done_button_height">42dp</dimen>
     <dimen name="month_list_item_header_height">40dp</dimen>
     <dimen name="month_day_label_text_size">8sp</dimen>
