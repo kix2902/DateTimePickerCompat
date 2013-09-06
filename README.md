@@ -10,19 +10,19 @@ Using this library is exactly the same as using the official one.
 
 First of all you need to get a new instance of the dialog you want to use:
 
-<pre><code>// For DatePickerDialog
-DatePickerDialog dialog = DatePickerDialog.newInstance(OnDateSetListener, year, month, day);
+      // For DatePickerDialog
+      DatePickerDialog dialog = DatePickerDialog.newInstance(OnDateSetListener, year, month, day);
+      
+      // For TimePickerDialog
+      TimePickerDialog dialog = TimePickerDialog.newInstance(OnTimeSetListener, hour, minutes, is24HourMode);
 
-// For TimePickerDialog
-TimePickerDialog dialog = TimePickerDialog.newInstance(OnTimeSetListener, hour, minutes, is24HourMode);
-</code></pre>
 
 
 With an instance of the Dialog the next step is to show it:
 
-<pre><code>// The structure is the same on both cases 
-dialog.show(FragmentManager, Tag);
-</code></pre> 
+      // The structure is the same on both cases 
+      dialog.show(FragmentManager, Tag);
+
 
 
 
