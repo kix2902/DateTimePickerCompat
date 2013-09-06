@@ -11,10 +11,10 @@ Using this library is exactly the same as using the official one.
 First of all you need to get a new instance of the dialog you want to use:
 
 <pre><code>// For DatePickerDialog
-DatePickerDialog dateFragment = DatePickerDialog.newInstance(OnDateSetListener, year, month, day);
+DatePickerDialog dialog = DatePickerDialog.newInstance(OnDateSetListener, year, month, day);
 
 // For TimePickerDialog
-TimePickerDialog timeFragment = TimePickerDialog.newInstance(OnTimeSetListener, hour, minutes, is24HourMode);
+TimePickerDialog dialog = TimePickerDialog.newInstance(OnTimeSetListener, hour, minutes, is24HourMode);
 </code></pre>
 
 
