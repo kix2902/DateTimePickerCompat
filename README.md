@@ -18,7 +18,7 @@ TimePickerDialog dialog = TimePickerDialog.newInstance(OnTimeSetListener, hour, 
 </code></pre>
 
 
-With an instance of the Dialog to use the next step is to show it:
+With an instance of the Dialog the next step is to show it:
 
 <pre><code>// The structure is the same on both cases 
 dialog.show(FragmentManager, Tag);
